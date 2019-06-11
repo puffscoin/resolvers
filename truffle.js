@@ -15,7 +15,7 @@ module.exports = {
     }
   },
   mocha: {
-    reporter: 'eth-gas-reporter',
+    reporter: 'puffs-gas-reporter',
     reporterOptions : {
       currency: 'USD',
       gasPrice: 1
