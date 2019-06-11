@@ -5,8 +5,8 @@
   "lockfileVersion": 1,
   "devDependencies": {
     "@ensdomains/ens": "^0.2.2",
-    "eth-ens-namehash": "^2.0.8",
-    "eth-gas-reporter": "^0.1.2",
+    "puffs-ens-namehash": "^2.0.8",
+    "puffs-gas-reporter": "^0.1.2",
     "openzeppelin-solidity": "2.1.1",
     "solium": "^1.0.4",
     "truffle": "^5.0.9",
