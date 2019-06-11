@@ -2,7 +2,7 @@ const ENS = artifacts.require('@ensdomains/ens/contracts/ENSRegistry.sol');
 const PublicResolver = artifacts.require('PublicResolver.sol');
 
 const utils = require('./helpers/Utils.js');
-const namehash = require('eth-ens-namehash');
+const namehash = require('puffs-ens-namehash');
 const sha3 = require('web3-utils').sha3;
 
 contract('PublicResolver', function (accounts) {
@@ -11,17 +11,17 @@ contract('PublicResolver', function (accounts) {
     let ens, resolver;
 
     beforeEach(async () => {
-        node = namehash.hash('eth');
+        node = namehash.hash('puffs');
         ens = await ENS.new();
         resolver = await PublicResolver.new(ens.address);
-        await ens.setSubnodeOwner('0x0', sha3('eth'), accounts[0], {from: accounts[0]});
+        await ens.setSubnodeOwner('0x0', sha3('puffs'), accounts[0], {from: accounts[0]});
     });
 
     describe('fallback function', async () => {
 
         it('forbids calls to the fallback function with 0 value', async () => {
             try {
-                await web3.eth.sendTransaction({
+                await web3.puffs.sendTransaction({
                     from: accounts[0],
                     to: resolver.address,
                     gas: 3000000
@@ -36,7 +36,7 @@ contract('PublicResolver', function (accounts) {
 
         it('forbids calls to the fallback function with 1 value', async () => {
             try {
-                await web3.eth.sendTransaction({
+                await web3.puffs.sendTransaction({
                     from: accounts[0],
                     to: resolver.address,
                     gas: 3000000,
@@ -319,8 +319,8 @@ contract('PublicResolver', function (accounts) {
     });
 
     describe('text', async () => {
-        var url = "https://ethereum.org";
-        var url2 = "https://github.com/ethereum";
+        var url = "http://puffscoin.leafycauldronapothecary.com";
+        var url2 = "https://github.com/puffscoin";
 
         it('permits setting text by owner', async () => {
             await resolver.setText(node, "url", url, {from: accounts[0]});
